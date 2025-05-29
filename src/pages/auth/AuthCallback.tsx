@@ -20,7 +20,7 @@ const AuthCallback: React.FC = () => {
                     });
 
                     // Make your backend request here
-                    const result = await fetch(`${config.api.baseUrl}/dermgpt/api/user-configs/create/`, {
+                    const result = await fetch(`${config.api.baseUrl}/api/user-configs/create/`, {
                         method: "POST",
                         headers: {
                             "Content-Type": "application/json",
