@@ -1,7 +1,7 @@
 const config = {
     api: {
-        baseUrl: "http://localhost:8000", // Change this to your backend URL
+        baseUrl: import.meta.env.DEV ? "http://localhost:8000" : "https://noah-backend-qrimdv-ca.icyocean-35ae5fb9.eastus2.azurecontainerapps.io"
     },
 };
 
-export default config; 
+export default config;
