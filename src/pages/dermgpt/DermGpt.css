@@ -1,0 +1,24 @@
+/* DermGpt.css */
+
+.iframe-container {
+    /* position: relative; */
+    padding-bottom: 56.25%;
+    /* 16:9 aspect ratio */
+    height: 0;
+    overflow: hidden;
+}
+
+.iframe-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding-top: 4.8%;
+    width: 100%;
+    height: 90%;
+    border: none;
+    /* Remove default border */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    /* Optional: Add a subtle shadow */
+    border-radius: 8px;
+    /* Optional: Add rounded corners */
+}

@@ -2,9 +2,8 @@ import React from "react";
 import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
 import Home from "./pages/home/Home";
 import Login from "./pages/login/Login";
-import Register from "./pages/register/Register";
 import DermGpt from "./pages/dermgpt/DermGpt";
-import ResetPasswordPlaceholder from "./pages/reset-password-placeholder/ResetPasswordPlaceholder";
+// import ResetPasswordPlaceholder from "./pages/reset-password-placeholder/ResetPasswordPlaceholder";
 import AuthCallback from "./pages/auth/AuthCallback";
 import logo from "./assets/dermgpt.svg";
 import "./App.css";
@@ -32,7 +31,7 @@ const App: React.FC = () => {
                                 Logout
                             </button>
                         ) : (
-                            <button onClick={loginWithRedirect} className="App-link">
+                            <button onClick={() => loginWithRedirect()} className="App-link">
                                 Login
                             </button>
                         )}
@@ -42,8 +41,8 @@ const App: React.FC = () => {
                     <Routes>
                         <Route path="/" element={<Home />} />
                         <Route path="/login" element={<Login />} />
-                        <Route path="/register" element={<Register />} />
-                        <Route path="/reset-password-placeholder" element={<ResetPasswordPlaceholder />} />
+                        {/* <Route path="/register" element={<Register />} />
+                        <Route path="/reset-password-placeholder" element={<ResetPasswordPlaceholder />} /> */}
                         <Route path="/auth-callback" element={<AuthCallback />} />
                         <Route
                             path="/derm-gpt-chat"
