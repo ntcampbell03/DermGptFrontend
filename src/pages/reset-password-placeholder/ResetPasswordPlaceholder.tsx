@@ -13,10 +13,10 @@ const ResetPasswordPlaceholder: React.FC = () => {
     const searchParams = new URLSearchParams(location.search);
     const email = searchParams.get("email");
 
-    if (!email) {
-        navigate("/login");
-        return null;
-    }
+    // if (!email) {
+    //     navigate("/login");
+    //     return null;
+    // }
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();

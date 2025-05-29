@@ -9,6 +9,7 @@ import logo from "./assets/dermgpt.svg";
 import "./App.css";
 import { useAuth0 } from "@auth0/auth0-react";
 import PrivateRoute from "./auth/PrivateRoute";
+import ResetPasswordPlaceholder from "./pages/reset-password-placeholder/ResetPasswordPlaceholder";
 
 const App: React.FC = () => {
     const { isAuthenticated, loginWithRedirect, logout } = useAuth0();
@@ -41,8 +42,8 @@ const App: React.FC = () => {
                     <Routes>
                         <Route path="/" element={<Home />} />
                         <Route path="/login" element={<Login />} />
-                        {/* <Route path="/register" element={<Register />} />
-                        <Route path="/reset-password-placeholder" element={<ResetPasswordPlaceholder />} /> */}
+                        {/* <Route path="/register" element={<Register />} /> */}
+                        <Route path="/reset-password-placeholder" element={<ResetPasswordPlaceholder />} />
                         <Route path="/auth-callback" element={<AuthCallback />} />
                         <Route
                             path="/derm-gpt-chat"
