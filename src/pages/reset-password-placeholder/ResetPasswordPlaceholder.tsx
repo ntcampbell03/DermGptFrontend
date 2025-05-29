@@ -1,7 +1,5 @@
 import React, { useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
-import { resetPasswordPlaceholder } from "../../api/Api";
-import { useAuth } from "../../auth/AuthContext";
 import "./ResetPasswordPlaceholder.css";
 
 const ResetPasswordPlaceholder: React.FC = () => {
@@ -10,7 +8,6 @@ const ResetPasswordPlaceholder: React.FC = () => {
     const [error, setError] = useState("");
     const navigate = useNavigate();
     const location = useLocation();
-    const { login } = useAuth();
 
     // Get email from URL query parameter
     const searchParams = new URLSearchParams(location.search);
@@ -30,19 +27,10 @@ const ResetPasswordPlaceholder: React.FC = () => {
             return;
         }
 
-        try {
-            const { data, status } = await resetPasswordPlaceholder(
-                email,
-                newPassword
-            );
-            if (status === 200) {
-                login(data.access_token);
-                navigate("/derm-gpt-chat");
-            } else {
-                setError(data.error || "Failed to reset password");
-            }
-        } catch (error) {
-            setError("An error occurred. Please try again.");
+        if (newPassword === confirmPassword) {
+            // TODO: Call API to reset password
+            console.log("Passwords match");
+            navigate("/derm-gpt-chat");
         }
     };
 
