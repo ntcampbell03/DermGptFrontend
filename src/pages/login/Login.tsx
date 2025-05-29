@@ -4,7 +4,7 @@ import "./Login.css";
 import { useAuth0 } from "@auth0/auth0-react";
 
 const Login: React.FC = () => {
-    const { loginWithRedirect, isAuthenticated, isLoading } = useAuth0();
+    const { loginWithRedirect, isAuthenticated } = useAuth0();
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -12,8 +12,6 @@ const Login: React.FC = () => {
             navigate("/derm-gpt-chat");
         }
     }, [isAuthenticated, navigate]);
-
-    if (isLoading) return <div>Loading...</div>;
 
     return (
         <div className="Login">
