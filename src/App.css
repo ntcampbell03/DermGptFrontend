@@ -1,0 +1,90 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap');
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    overflow: hidden;
+    background-color: #f7f7f7;
+    font-family: 'Roboto', sans-serif;
+}
+
+* {
+    font-family: 'Roboto', sans-serif;
+}
+
+.App {
+    text-align: center;
+    background-color: #f7f7f7;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.App-header {
+    background-color: white;
+    width: 100%;
+    height: 80px;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+}
+
+.App-logo {
+    height: 80px;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.App-nav-left {
+    position: absolute;
+    left: 90px;
+}
+
+.App-nav-right {
+    position: absolute;
+    right: 150px;
+}
+
+.App-logo-link {
+    position: absolute;
+    left: 49%;
+    transform: translateX(-50%);
+    padding-bottom: 70px;
+}
+
+.App-link {
+    color: #000000;
+    text-decoration: none;
+    font-size: 16px;
+}
+
+.App-link:hover {
+    text-decoration: underline;
+}
+
+.App-main {
+    background-color: #f7f7f7;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: calc(10px + 2vmin);
+    color: #282c34;
+    overflow: auto;
+    margin-top: 140px;
+}
+
+.error {
+    color: red;
+    font-size: 16px;
+}
