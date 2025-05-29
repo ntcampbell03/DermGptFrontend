@@ -11,7 +11,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 import PrivateRoute from "./auth/PrivateRoute";
 
 const App: React.FC = () => {
-    const { isAuthenticated, loginWithRedirect, logout, isLoading } = useAuth0();
+    const { isAuthenticated, loginWithRedirect, logout } = useAuth0();
 
     return (
         <Router>
