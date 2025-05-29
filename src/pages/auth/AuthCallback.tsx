@@ -10,23 +10,35 @@ const AuthCallback: React.FC = () => {
     useEffect(() => {
         const handleCallback = async () => {
             if (isAuthenticated) {
-                const token = await getAccessTokenSilently();
-                // Make your backend request here
-                const result = await fetch(`${config.api.baseUrl}/dermgpt/api/user-configs/create/`, {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json",
-                        Authorization: `Bearer ${token}`,
-                    },
-                    body: JSON.stringify({
-                        user_id: user?.sub,
-                        user_name: user?.name,
-                        email: user?.email,
-                    }),
-                });
-                console.log(result);
-                // Redirect to chat
-                navigate("/derm-gpt-chat");
+                try {
+                    // Request access token for your API
+                    const token = await getAccessTokenSilently({
+                        authorizationParams: {
+                            audience: import.meta.env.VITE_AUTH0_AUDIENCE,
+                            scope: "openid profile email"
+                        }
+                    });
+
+                    // Make your backend request here
+                    const result = await fetch(`${config.api.baseUrl}/dermgpt/api/user-configs/create/`, {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json",
+                            Authorization: `Bearer ${token}`,
+                        },
+                        body: JSON.stringify({
+                            user_id: user?.sub,
+                            user_name: user?.name,
+                            email: user?.email,
+                        }),
+                    });
+                    console.log(result);
+                    // Redirect to chat
+                    navigate("/derm-gpt-chat");
+                } catch (error) {
+                    console.error("Error getting access token:", error);
+                    // Handle error appropriately
+                }
             }
         };
         if (!isLoading) {
