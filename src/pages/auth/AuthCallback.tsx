@@ -27,7 +27,6 @@ const AuthCallback: React.FC = () => {
                             Authorization: `Bearer ${token}`,
                         },
                         body: JSON.stringify({
-                            user_id: user?.sub,
                             user_name: user?.name,
                             email: user?.email,
                         }),
