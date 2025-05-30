@@ -10,6 +10,7 @@ const PrivateRoute: React.FC<PrivateRouteProps> = ({ children }) => {
 
     if (!isAuthenticated) {
         loginWithRedirect()
+        return <div></div>;
     }
 
     return <>{children}</>;
