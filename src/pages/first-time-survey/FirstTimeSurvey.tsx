@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import "./FirstTimeSurvey.css";
+import config from "../../config/Config";
+import { useAuth0 } from "@auth0/auth0-react";
 
 interface SurveyData {
     professionalRole: string;
@@ -16,6 +18,7 @@ interface SurveyData {
 
 const FirstTimeSurvey: React.FC = () => {
     const navigate = useNavigate();
+    const { getAccessTokenSilently } = useAuth0();
     const [scrollIndicatorOpacity, setScrollIndicatorOpacity] = useState(1);
     const [formData, setFormData] = useState<SurveyData>({
         professionalRole: "",
@@ -75,14 +78,42 @@ const FirstTimeSurvey: React.FC = () => {
         }));
     };
 
-    const handleSubmit = (e: React.FormEvent) => {
+    const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
 
-        // Here you could send the data to your backend
-        console.log("Survey data:", formData);
+        try {
+            // Submit survey data to the backend
+            const token = await getAccessTokenSilently({
+                authorizationParams: {
+                    audience: import.meta.env.VITE_AUTH0_AUDIENCE,
+                    scope: "openid profile email"
+                }
+            });
+            const response = await fetch(`${config.api.baseUrl}/api/surveys/submit/`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    Authorization: `Bearer ${token}`,
+                },
+                body: JSON.stringify({
+                    "survey_results": formData
+                }),
+            });
 
-        // Navigate to DermGPT chat after completion
-        navigate("/derm-gpt-chat");
+            if (response.ok) {
+                console.log("Survey submitted successfully");
+                // Navigate to DermGPT chat after successful submission
+                navigate("/derm-gpt-chat");
+            } else {
+                console.error("Failed to submit survey:", response.statusText);
+                // Still navigate to chat even if survey submission fails
+                navigate("/derm-gpt-chat");
+            }
+        } catch (error) {
+            console.error("Error submitting survey:", error);
+            // Still navigate to chat even if there's an error
+            navigate("/derm-gpt-chat");
+        }
     };
 
     const handleSkipSurvey = () => {
@@ -350,3 +381,7 @@ const FirstTimeSurvey: React.FC = () => {
 };
 
 export default FirstTimeSurvey; 
+
+function getAccessTokenSilently(arg0: { authorizationParams: { audience: any; scope: string; }; }) {
+    throw new Error("Function not implemented.");
+}
