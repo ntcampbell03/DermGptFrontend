@@ -6,14 +6,18 @@ interface PrivateRouteProps {
 }
 
 const PrivateRoute: React.FC<PrivateRouteProps> = ({ children }) => {
-    const { isAuthenticated, loginWithRedirect } = useAuth0();
+    const { isAuthenticated, isLoading, loginWithRedirect } = useAuth0();
 
-    if (!isAuthenticated) {
-        loginWithRedirect()
+    if (isLoading) {
         return <div></div>;
     }
 
-    return <>{children}</>;
+    if (isAuthenticated) {
+        return <>{children}</>;
+    }
+
+    loginWithRedirect();
+    return <div></div>;
 };
 
 export default PrivateRoute; 
