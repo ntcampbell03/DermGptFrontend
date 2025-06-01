@@ -19,7 +19,31 @@ const AuthCallback: React.FC = () => {
                         }
                     });
 
-                    // Make your backend request here
+                    // First, check if user config already exists
+                    try {
+                        const checkResult = await fetch(`${config.api.baseUrl}/api/user-configs/me/`, {
+                            method: "GET",
+                            headers: {
+                                "Content-Type": "application/json",
+                                Authorization: `Bearer ${token}`,
+                            },
+                        });
+
+                        if (checkResult.ok) {
+                            // User config exists, redirect to chat
+                            navigate("/derm-gpt-chat");
+                            return;
+                        } else if (checkResult.status === 404) {
+                            // User config doesn't exist, this is a first-time user
+                            navigate("/first-time-survey");
+                            return;
+                        }
+                    } catch (error) {
+                        console.error("Error checking user config:", error);
+                        // Continue to create config as fallback
+                    }
+
+                    // Fallback: Create user config if check failed
                     const result = await fetch(`${config.api.baseUrl}/api/user-configs/create/`, {
                         method: "POST",
                         headers: {
@@ -32,8 +56,8 @@ const AuthCallback: React.FC = () => {
                         }),
                     });
                     console.log(result);
-                    // Redirect to chat
-                    navigate("/derm-gpt-chat");
+                    // Redirect to first-time survey for newly created users
+                    navigate("/first-time-survey");
                 } catch (error) {
                     console.error("Error getting access token:", error);
                     // Handle error appropriately

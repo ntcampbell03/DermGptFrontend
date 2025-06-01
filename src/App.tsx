@@ -5,6 +5,7 @@ import Login from "./pages/login/Login";
 import DermGpt from "./pages/dermgpt/DermGpt";
 // import ResetPasswordPlaceholder from "./pages/reset-password-placeholder/ResetPasswordPlaceholder";
 import AuthCallback from "./pages/auth/AuthCallback";
+import FirstTimeSurvey from "./pages/first-time-survey/FirstTimeSurvey";
 import logo from "./assets/dermgpt.svg";
 import "./App.css";
 import { useAuth0 } from "@auth0/auth0-react";
@@ -45,6 +46,14 @@ const App: React.FC = () => {
                         {/* <Route path="/register" element={<Register />} /> */}
                         <Route path="/reset-password-placeholder" element={<ResetPasswordPlaceholder />} />
                         <Route path="/auth-callback" element={<AuthCallback />} />
+                        <Route
+                            path="/first-time-survey"
+                            element={
+                                <PrivateRoute>
+                                    <FirstTimeSurvey />
+                                </PrivateRoute>
+                            }
+                        />
                         <Route
                             path="/derm-gpt-chat"
                             element={

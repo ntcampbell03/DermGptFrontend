@@ -1,24 +1,28 @@
 /* DermGpt.css */
 
+/* Prevent scrolling on the page */
 .iframe-container {
-    /* position: relative; */
-    padding-bottom: 56.25%;
-    /* 16:9 aspect ratio */
-    height: 0;
+    position: fixed;
+    top: 120px;
+    /* Account for header height (80px + 40px padding) */
+    left: 0;
+    width: 100vw;
+    height: calc(100vh - 120px);
+    /* Full viewport minus header height */
     overflow: hidden;
+    z-index: 1000;
 }
 
 .iframe-container iframe {
     position: absolute;
     top: 0;
     left: 0;
-    padding-top: 4.8%;
     width: 100%;
-    height: 90%;
+    height: 100%;
     border: none;
     /* Remove default border */
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
     /* Optional: Add a subtle shadow */
-    border-radius: 8px;
-    /* Optional: Add rounded corners */
+    border-radius: 0;
+    /* Remove rounded corners for full viewport */
 }
