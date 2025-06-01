@@ -34,6 +34,17 @@ const AuthCallback: React.FC = () => {
                             navigate("/derm-gpt-chat");
                             return;
                         } else if (checkResult.status === 404) {
+                            const result = await fetch(`${config.api.baseUrl}/api/user-configs/create/`, {
+                                method: "POST",
+                                headers: {
+                                    "Content-Type": "application/json",
+                                    Authorization: `Bearer ${token}`,
+                                },
+                                body: JSON.stringify({
+                                    user_name: user?.name,
+                                    email: user?.email,
+                                }),
+                            });
                             // User config doesn't exist, this is a first-time user
                             navigate("/first-time-survey");
                             return;
