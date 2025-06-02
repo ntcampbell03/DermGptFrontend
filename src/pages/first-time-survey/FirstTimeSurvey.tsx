@@ -381,7 +381,3 @@ const FirstTimeSurvey: React.FC = () => {
 };
 
 export default FirstTimeSurvey; 
-
-function getAccessTokenSilently(arg0: { authorizationParams: { audience: any; scope: string; }; }) {
-    throw new Error("Function not implemented.");
-}
