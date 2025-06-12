@@ -12,8 +12,6 @@ interface SurveyData {
     yearsInPractice: string;
     practiceSetting: string;
     customPracticeSetting: string;
-    geographicRegion: string;
-    customGeographicRegion: string;
 }
 
 const FirstTimeSurvey: React.FC = () => {
@@ -28,8 +26,6 @@ const FirstTimeSurvey: React.FC = () => {
         yearsInPractice: "",
         practiceSetting: "",
         customPracticeSetting: "",
-        geographicRegion: "",
-        customGeographicRegion: "",
     });
 
     // Check scroll position to fade scroll indicator
@@ -122,9 +118,7 @@ const FirstTimeSurvey: React.FC = () => {
 
     const isFormValid = () => {
         return formData.professionalRole &&
-            formData.geographicRegion &&
-            (formData.professionalRole !== "Other" || formData.customRole) &&
-            (formData.geographicRegion !== "Other" || formData.customGeographicRegion);
+            (formData.professionalRole !== "Other" || formData.customRole);
     };
 
     const scrollToBottom = () => {
@@ -272,40 +266,6 @@ const FirstTimeSurvey: React.FC = () => {
                                     placeholder="Please specify..."
                                     value={formData.customPracticeSetting}
                                     onChange={(e) => handleInputChange("customPracticeSetting", e.target.value)}
-                                />
-                            )}
-                        </div>
-
-                        {/* Geographic Region */}
-                        <div className="form-group">
-                            <label className="form-label">
-                                5. Geographic Region
-                                <span className="required">*</span>
-                            </label>
-                            <select
-                                className="form-select"
-                                value={formData.geographicRegion}
-                                onChange={(e) => handleInputChange("geographicRegion", e.target.value)}
-                            >
-                                <option value="">Select region...</option>
-                                <option value="Northeast US">Northeast US</option>
-                                <option value="Southeast US">Southeast US</option>
-                                <option value="Midwest US">Midwest US</option>
-                                <option value="Southwest US">Southwest US</option>
-                                <option value="West US">West US</option>
-                                <option value="Canada">Canada</option>
-                                <option value="Europe">Europe</option>
-                                <option value="Asia">Asia</option>
-                                <option value="Australia/New Zealand">Australia/New Zealand</option>
-                                <option value="Other">Other</option>
-                            </select>
-                            {formData.geographicRegion === "Other" && (
-                                <input
-                                    type="text"
-                                    className="other-input"
-                                    placeholder="Please specify..."
-                                    value={formData.customGeographicRegion}
-                                    onChange={(e) => handleInputChange("customGeographicRegion", e.target.value)}
                                 />
                             )}
                         </div>
