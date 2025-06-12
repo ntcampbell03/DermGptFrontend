@@ -169,143 +169,111 @@ const FirstTimeSurvey: React.FC = () => {
                                 <span className="required">*</span>
                             </label>
                             <p className="form-description">Please select your primary role:</p>
-                            <div className="radio-group">
-                                {[
-                                    "Physician",
-                                    "Physician Assistant",
-                                    "Nurse Practitioner",
-                                    "Medical Student",
-                                    "Resident/Fellow",
-                                    "Pharmacist",
-                                    "Healthcare Administrator",
-                                    "Researcher",
-                                    "Patient/Public",
-                                    "Other"
-                                ].map(role => (
-                                    <label key={role} className="radio-label">
-                                        <input
-                                            type="radio"
-                                            name="professionalRole"
-                                            value={role}
-                                            checked={formData.professionalRole === role}
-                                            onChange={(e) => handleInputChange("professionalRole", e.target.value)}
-                                        />
-                                        <span className="radio-text">{role}</span>
-                                        {role === "Other" && formData.professionalRole === "Other" && (
-                                            <input
-                                                type="text"
-                                                className="other-input"
-                                                placeholder="Please specify..."
-                                                value={formData.customRole}
-                                                onChange={(e) => handleInputChange("customRole", e.target.value)}
-                                            />
-                                        )}
-                                    </label>
-                                ))}
-                            </div>
+                            <select
+                                className="form-select"
+                                value={formData.professionalRole}
+                                onChange={(e) => handleInputChange("professionalRole", e.target.value)}
+                            >
+                                <option value="">Select your role...</option>
+                                <option value="Physician">Physician</option>
+                                <option value="Physician Assistant">Physician Assistant</option>
+                                <option value="Nurse Practitioner">Nurse Practitioner</option>
+                                <option value="Medical Student">Medical Student</option>
+                                <option value="Resident/Fellow">Resident/Fellow</option>
+                                <option value="Pharmacist">Pharmacist</option>
+                                <option value="Healthcare Administrator">Healthcare Administrator</option>
+                                <option value="Researcher">Researcher</option>
+                                <option value="Patient/Public">Patient/Public</option>
+                                <option value="Other">Other</option>
+                            </select>
+                            {formData.professionalRole === "Other" && (
+                                <input
+                                    type="text"
+                                    className="other-input"
+                                    placeholder="Please specify..."
+                                    value={formData.customRole}
+                                    onChange={(e) => handleInputChange("customRole", e.target.value)}
+                                />
+                            )}
                         </div>
 
                         {/* Specialty */}
                         <div className="form-group">
                             <label className="form-label">2. Specialty (if applicable)</label>
-                            <div className="radio-group">
-                                {[
-                                    "Dermatology",
-                                    "Primary Care/Family Medicine",
-                                    "Internal Medicine",
-                                    "Pediatrics",
-                                    "Emergency Medicine",
-                                    "Plastic Surgery",
-                                    "Oncology",
-                                    "Other",
-                                    "Not applicable"
-                                ].map(specialty => (
-                                    <label key={specialty} className="radio-label">
-                                        <input
-                                            type="radio"
-                                            name="specialty"
-                                            value={specialty}
-                                            checked={formData.specialty === specialty}
-                                            onChange={(e) => handleInputChange("specialty", e.target.value)}
-                                        />
-                                        <span className="radio-text">{specialty}</span>
-                                        {specialty === "Other" && formData.specialty === "Other" && (
-                                            <input
-                                                type="text"
-                                                className="other-input"
-                                                placeholder="Please specify..."
-                                                value={formData.customSpecialty}
-                                                onChange={(e) => handleInputChange("customSpecialty", e.target.value)}
-                                            />
-                                        )}
-                                    </label>
-                                ))}
-                            </div>
+                            <select
+                                className="form-select"
+                                value={formData.specialty}
+                                onChange={(e) => handleInputChange("specialty", e.target.value)}
+                            >
+                                <option value="">Select specialty...</option>
+                                <option value="Dermatology">Dermatology</option>
+                                <option value="Primary Care/Family Medicine">Primary Care/Family Medicine</option>
+                                <option value="Internal Medicine">Internal Medicine</option>
+                                <option value="Pediatrics">Pediatrics</option>
+                                <option value="Emergency Medicine">Emergency Medicine</option>
+                                <option value="Plastic Surgery">Plastic Surgery</option>
+                                <option value="Oncology">Oncology</option>
+                                <option value="Other">Other</option>
+                                <option value="Not applicable">Not applicable</option>
+                            </select>
+                            {formData.specialty === "Other" && (
+                                <input
+                                    type="text"
+                                    className="other-input"
+                                    placeholder="Please specify..."
+                                    value={formData.customSpecialty}
+                                    onChange={(e) => handleInputChange("customSpecialty", e.target.value)}
+                                />
+                            )}
                         </div>
 
                         {/* Years in Practice */}
                         <div className="form-group">
                             <label className="form-label">3. Years in Practice (if applicable)</label>
-                            <div className="radio-group">
-                                {[
-                                    "In training",
-                                    "0-5 years",
-                                    "6-10 years",
-                                    "11-20 years",
-                                    "21+ years",
-                                    "Not applicable"
-                                ].map(years => (
-                                    <label key={years} className="radio-label">
-                                        <input
-                                            type="radio"
-                                            name="yearsInPractice"
-                                            value={years}
-                                            checked={formData.yearsInPractice === years}
-                                            onChange={(e) => handleInputChange("yearsInPractice", e.target.value)}
-                                        />
-                                        <span className="radio-text">{years}</span>
-                                    </label>
-                                ))}
-                            </div>
+                            <select
+                                className="form-select"
+                                value={formData.yearsInPractice}
+                                onChange={(e) => handleInputChange("yearsInPractice", e.target.value)}
+                            >
+                                <option value="">Select years...</option>
+                                <option value="In training">In training</option>
+                                <option value="0-5 years">0-5 years</option>
+                                <option value="6-10 years">6-10 years</option>
+                                <option value="11-20 years">11-20 years</option>
+                                <option value="21+ years">21+ years</option>
+                                <option value="Not applicable">Not applicable</option>
+                            </select>
                         </div>
 
                         {/* Practice Setting */}
                         <div className="form-group">
                             <label className="form-label">4. Practice Setting (if applicable)</label>
-                            <div className="radio-group">
-                                {[
-                                    "Academic/Teaching institution",
-                                    "Hospital-based",
-                                    "Private practice - solo",
-                                    "Private practice - group",
-                                    "Multi-specialty group",
-                                    "Federally Qualified Health Center (FQHC)",
-                                    "Government/Military",
-                                    "Telehealth",
-                                    "Other",
-                                    "Not applicable"
-                                ].map(setting => (
-                                    <label key={setting} className="radio-label">
-                                        <input
-                                            type="radio"
-                                            name="practiceSetting"
-                                            value={setting}
-                                            checked={formData.practiceSetting === setting}
-                                            onChange={(e) => handleInputChange("practiceSetting", e.target.value)}
-                                        />
-                                        <span className="radio-text">{setting}</span>
-                                        {setting === "Other" && formData.practiceSetting === "Other" && (
-                                            <input
-                                                type="text"
-                                                className="other-input"
-                                                placeholder="Please specify..."
-                                                value={formData.customPracticeSetting}
-                                                onChange={(e) => handleInputChange("customPracticeSetting", e.target.value)}
-                                            />
-                                        )}
-                                    </label>
-                                ))}
-                            </div>
+                            <select
+                                className="form-select"
+                                value={formData.practiceSetting}
+                                onChange={(e) => handleInputChange("practiceSetting", e.target.value)}
+                            >
+                                <option value="">Select setting...</option>
+                                <option value="Academic/Teaching institution">Academic/Teaching institution</option>
+                                <option value="Hospital-based">Hospital-based</option>
+                                <option value="Private practice - solo">Private practice - solo</option>
+                                <option value="Private practice - group">Private practice - group</option>
+                                <option value="Multi-specialty group">Multi-specialty group</option>
+                                <option value="Federally Qualified Health Center (FQHC)">Federally Qualified Health Center (FQHC)</option>
+                                <option value="Government/Military">Government/Military</option>
+                                <option value="Telehealth">Telehealth</option>
+                                <option value="Other">Other</option>
+                                <option value="Not applicable">Not applicable</option>
+                            </select>
+                            {formData.practiceSetting === "Other" && (
+                                <input
+                                    type="text"
+                                    className="other-input"
+                                    placeholder="Please specify..."
+                                    value={formData.customPracticeSetting}
+                                    onChange={(e) => handleInputChange("customPracticeSetting", e.target.value)}
+                                />
+                            )}
                         </div>
 
                         {/* Geographic Region */}
@@ -314,40 +282,32 @@ const FirstTimeSurvey: React.FC = () => {
                                 5. Geographic Region
                                 <span className="required">*</span>
                             </label>
-                            <div className="radio-group">
-                                {[
-                                    "Northeast US",
-                                    "Southeast US",
-                                    "Midwest US",
-                                    "Southwest US",
-                                    "West US",
-                                    "Canada",
-                                    "Europe",
-                                    "Asia",
-                                    "Australia/New Zealand",
-                                    "Other"
-                                ].map(region => (
-                                    <label key={region} className="radio-label">
-                                        <input
-                                            type="radio"
-                                            name="geographicRegion"
-                                            value={region}
-                                            checked={formData.geographicRegion === region}
-                                            onChange={(e) => handleInputChange("geographicRegion", e.target.value)}
-                                        />
-                                        <span className="radio-text">{region}</span>
-                                        {region === "Other" && formData.geographicRegion === "Other" && (
-                                            <input
-                                                type="text"
-                                                className="other-input"
-                                                placeholder="Please specify..."
-                                                value={formData.customGeographicRegion}
-                                                onChange={(e) => handleInputChange("customGeographicRegion", e.target.value)}
-                                            />
-                                        )}
-                                    </label>
-                                ))}
-                            </div>
+                            <select
+                                className="form-select"
+                                value={formData.geographicRegion}
+                                onChange={(e) => handleInputChange("geographicRegion", e.target.value)}
+                            >
+                                <option value="">Select region...</option>
+                                <option value="Northeast US">Northeast US</option>
+                                <option value="Southeast US">Southeast US</option>
+                                <option value="Midwest US">Midwest US</option>
+                                <option value="Southwest US">Southwest US</option>
+                                <option value="West US">West US</option>
+                                <option value="Canada">Canada</option>
+                                <option value="Europe">Europe</option>
+                                <option value="Asia">Asia</option>
+                                <option value="Australia/New Zealand">Australia/New Zealand</option>
+                                <option value="Other">Other</option>
+                            </select>
+                            {formData.geographicRegion === "Other" && (
+                                <input
+                                    type="text"
+                                    className="other-input"
+                                    placeholder="Please specify..."
+                                    value={formData.customGeographicRegion}
+                                    onChange={(e) => handleInputChange("customGeographicRegion", e.target.value)}
+                                />
+                            )}
                         </div>
                     </div>
 
