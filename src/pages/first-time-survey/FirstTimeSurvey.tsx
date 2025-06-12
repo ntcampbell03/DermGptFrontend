@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import "./FirstTimeSurvey.css";
 import config from "../../config/Config";
 import { useAuth0 } from "@auth0/auth0-react";
@@ -315,6 +315,7 @@ const FirstTimeSurvey: React.FC = () => {
                         <p>
                             Your information helps us improve DermGPT and provides anonymous aggregate data for our sponsors.
                             This information will never be shared in a way that identifies you personally.
+                            By continuing, you agree to our <Link to="/sla" className="sla-link">Service Level Agreement</Link>.
                         </p>
                     </div>
 

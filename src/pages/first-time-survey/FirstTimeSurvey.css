@@ -152,6 +152,18 @@
     line-height: 1.6;
 }
 
+.sla-link {
+    color: #005dc0;
+    text-decoration: none;
+    font-weight: 400;
+    transition: color 0.15s ease;
+}
+
+.sla-link:hover {
+    color: #0056b3;
+    text-decoration: underline;
+}
+
 .form-actions {
     text-align: center;
     padding: 2rem 0 1rem 0;
